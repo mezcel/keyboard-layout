@@ -39,17 +39,15 @@ function tput_color_variables {
 function greetings {
     clear
     echo "${FG_CYAN}"
-    echo "########################################################"
-    echo "###              Keyboard Layout                     ###"
-    echo "########################################################"
-    echo "## Abou:"
-    echo "##    This tool is used develop keyboard muscle memory."
-    echo "##    Compatible with Bash or GitBash"
-    echo "##"
-    echo "## By: Mezcel"
-    echo "## git: "
-    echo "##    ${FG_START_UNDERLINE}https://github.com/mezcel/keyboard-layout${FG_END_UNDERLINE}${FG_NoColor}"
-    echo "#########################################################"
+    echo "#################################################################"
+    echo "###                     Keyboard Layout                       ###"
+    echo "#################################################################"
+    echo "## About: This tool is used to develop keyboard muscle memory. ##"
+    echo "##        Compatible with Bash or GitBash                      ##"
+    echo "##                                                             ##"
+    echo "## By:    Mezcel                                               ##"
+    echo "##        ${FG_START_UNDERLINE}https://github.com/mezcel/keyboard-layout.git${FG_END_UNDERLINE}${FG_NoColor}        ##"
+    echo "#################################################################"
 }
 
 function letter_array {
@@ -81,7 +79,7 @@ function letter_array {
 
     computerWords=( $(cat $thisPath/text-files/computerWords.txt) )
 
-    echo -e " Loading finished.\n $FG_NoColor"
+    echo -e " Loading finished. $FG_NoColor"
     sleep 1s
 }
 
@@ -360,6 +358,7 @@ function finger_check {
         # text_to_speech
 
         if [ $string_length -eq 1 ]; then
+        #if [ $string_length -le 3 ]; then
             prompt_length=${#fingerhint}
 
             if [ $prompt_length -le 20 ]; then
@@ -367,8 +366,8 @@ function finger_check {
             else
                 spacer=$(echo -e "\t")
             fi
-
-            read -p "[ ${FG_START_UNDERLINE}$fingerhint${FG_END_UNDERLINE} ]${spacer}${FG_CYAN}${FG_BOLD}$letter${FG_NoColor} ==> " -n$string_length -s inputPress
+            
+            read -p "[ ${FG_START_UNDERLINE}$handhint${FG_END_UNDERLINE} ]  ${FG_CYAN}${FG_BOLD}$letter${FG_NoColor}${spacer}==> " -n$string_length inputPress
 
         else
 
@@ -402,27 +401,19 @@ function finger_check {
                 exit
                 ;;
             $letter )
-                if [ $string_length -eq 1 ]; then
-                    echo -e "\t${FG_GREEN}$CHECKMARK  pass ${FG_NoColor}"
-                else
-                    if [ ${#spacer} -le 3 ] || [ ${#letter} -le 3 ]; then
-                        spacer=${spacer}$(echo -e "\t")
-                    fi
-                    echo -e "$spacer${FG_GREEN}$CHECKMARK  pass ${FG_NoColor}"
+                if [ ${#spacer} -le 3 ] || [ ${#letter} -le 3 ]; then
+                    spacer=${spacer}$(echo -e "\t")
                 fi
+                echo -e "$spacer${FG_GREEN}$CHECKMARK  pass ${FG_NoColor}"
 
                 pass=1
                 passCount=$((passCount + 1))
                 ;;
             * )
-                if [ ${#letter} -eq 1 ]; then
-                    echo -e "\t${FG_RED}$XMARK fail, you entered: ${FG_CYAN}${FG_BOLD}$inputPress ${FG_RED}"
-                else
-                    if [ ${#spacer} -le 3 ] || [ ${#letter} -le 3 ]; then
-                        spacer=${spacer}$(echo -e "\t")
-                    fi
-                    echo -e "$spacer${FG_RED}$XMARK fail, you entered: ${FG_CYAN}${FG_BOLD}$inputPress ${FG_RED}"
+                if [ ${#spacer} -le 3 ] || [ ${#letter} -le 3 ]; then
+                    spacer=${spacer}$(echo -e "\t")
                 fi
+                echo -e "$spacer${FG_RED}$XMARK fail, you entered: ${FG_CYAN}${FG_BOLD}$inputPress ${FG_RED}"
 
                 pass=0
                 failCount=$((failCount + 1))
