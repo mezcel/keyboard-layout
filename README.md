@@ -1,21 +1,18 @@
----
-title: readme
----
-
-# keyboard-trainer
+# keyboard-layout
 
 ## About
 
 * A bash script to help develop keyboard muscle memory.
+* Intended for use on a *US-International keyboard* layout.
 
 ### Edit Training
 
-* Edit strings used in training.
+* Edit the strings used in training.
     * [text database](text-files/README.md)
 
 ---
 
-## Text-to-Speech Feature
+### Text-to-Speech Feature ( off by default )
 
 There is a text to speech feature, which uses [espeak](http://espeak.sourceforge.net/) to read the text to spell. The audio is not the best quality.
 

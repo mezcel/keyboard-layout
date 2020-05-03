@@ -39,7 +39,7 @@ function greetings {
     clear
     echo "${FG_CYAN}"
     echo "########################################################"
-    echo "###              Keyboard Trainer                    ###"
+    echo "###              Keyboard Layout                     ###"
     echo "########################################################"
     echo "## Abou:"
     echo "##    This tool is used develop keyboard muscle memory."
