@@ -48,7 +48,7 @@ function greetings {
     echo "##"
     echo "## By: Mezcel"
     echo "## git: "
-    echo "##    ${FG_START_UNDERLINE}https://gist.github.com/4bd3ec48c0f3d9c27e33fc6943a29903.git${FG_END_UNDERLINE}${FG_NoColor}"
+    echo "##    ${FG_START_UNDERLINE}https://github.com/mezcel/keyboard-layout${FG_END_UNDERLINE}${FG_NoColor}"
     echo "#########################################################"
 }
 
