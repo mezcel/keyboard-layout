@@ -4,6 +4,7 @@
 ## Keyboards come in many sizes and shapes, and some keyboards are ergonomic.
 ## This is just a script to get my fingers used to moveing correctly where ever the letter keys are on the keyboard.
 
+thisPath=$(dirname $0)
 
 function tput_color_variables {
     FG_RED=$(tput setaf 1)
@@ -55,30 +56,30 @@ function letter_array {
 
     echo -e "\n$FG_YELLOW Loading database of letter and words ..."
 
-    letterArray=( $(cat text-files/letterArray.txt) )
-    wordsArray=( $(cat text-files/wordsArray.txt) )
+    letterArray=( $(cat $thisPath/text-files/letterArray.txt) )
+    wordsArray=( $(cat $thisPath/text-files/wordsArray.txt) )
 
-    leftArray=( $(cat text-files/leftArray.txt) )
-    leftPinky=( $(cat text-files/leftPinky.txt) )
-    leftRing=( $(cat text-files/leftRing.txt) )
-    leftMiddle=( $(cat text-files/leftMiddle.txt) )
-    leftIndex=( $(cat text-files/leftIndex.txt) )
-    leftWords=( $(cat text-files/leftWords.txt) )
+    leftArray=( $(cat $thisPath/text-files/leftArray.txt) )
+    leftPinky=( $(cat $thisPath/text-files/leftPinky.txt) )
+    leftRing=( $(cat $thisPath/text-files/leftRing.txt) )
+    leftMiddle=( $(cat $thisPath/text-files/leftMiddle.txt) )
+    leftIndex=( $(cat $thisPath/text-files/leftIndex.txt) )
+    leftWords=( $(cat $thisPath/text-files/leftWords.txt) )
 
-    rightArray=( $(cat text-files/rightArray.txt) )
-    rightIndex=( $(cat text-files/rightIndex.txt) )
-    rightMiddle=( $(cat text-files/rightMiddle.txt) )
-    rightRing=( $(cat text-files/rightRing.txt) )
-    rightPinky=( $(cat text-files/rightPinky.txt) )
-    rightWords=( $(cat text-files/rightWords.txt) )
+    rightArray=( $(cat $thisPath/text-files/rightArray.txt) )
+    rightIndex=( $(cat $thisPath/text-files/rightIndex.txt) )
+    rightMiddle=( $(cat $thisPath/text-files/rightMiddle.txt) )
+    rightRing=( $(cat $thisPath/text-files/rightRing.txt) )
+    rightPinky=( $(cat $thisPath/text-files/rightPinky.txt) )
+    rightWords=( $(cat $thisPath/text-files/rightWords.txt) )
 
-    toprowArray=( $(cat text-files/toprowArray.txt) )
-    toprowWords=( $(cat text-files/toprowWords.txt) )
-    homerowArray=( $(cat text-files/homerowArray.txt) )
-    homerowWords=( $(cat text-files/homerowWords.txt) )
-    bottomrowArray=( $(cat text-files/bottomrowArray.txt) )
+    toprowArray=( $(cat $thisPath/text-files/toprowArray.txt) )
+    toprowWords=( $(cat $thisPath/text-files/toprowWords.txt) )
+    homerowArray=( $(cat $thisPath/text-files/homerowArray.txt) )
+    homerowWords=( $(cat $thisPath/text-files/homerowWords.txt) )
+    bottomrowArray=( $(cat $thisPath/text-files/bottomrowArray.txt) )
 
-    computerWords=( $(cat text-files/computerWords.txt) )
+    computerWords=( $(cat $thisPath/text-files/computerWords.txt) )
 
     echo -e " Loading finished.\n $FG_NoColor"
     sleep 1s

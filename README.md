@@ -5,6 +5,14 @@
 * A bash script to help develop keyboard muscle memory.
 * Intended for use on a *US-International keyboard* layout.
 
+### Run
+
+```sh
+## Launch application in Bash or Gitbash
+
+./keyboard-layout.sh
+```
+
 ### Edit Training
 
 * Edit the strings used in training.
