@@ -1,0 +1,7 @@
+has
+lag
+sad
+dash
+flag
+flash
+gas

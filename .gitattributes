@@ -1,0 +1,4 @@
+*.bat eol=crlf
+*.ps1 eol=crlf
+*.sh eol=lf
+Makefile eol=lf
