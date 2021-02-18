@@ -21,6 +21,8 @@ bin
 cache
 case
 cd
+char
+clone
 commit
 config
 connect
@@ -33,6 +35,7 @@ df
 dhcpcd
 do
 documents
+double
 du
 dwm
 echo
@@ -44,8 +47,10 @@ exec
 exit
 explorer
 fish
+float
 foo
 for
+free
 geany
 gist
 gist.github
@@ -56,6 +61,8 @@ gunzip
 host
 if
 ifconfig
+import
+int
 include
 ip
 iw
@@ -85,13 +92,16 @@ pavucontrol
 pcmanfm
 pictures
 ping
+printf
 purge
+push
 pwd
 python
 ranger
 rebase
 reboot
 remove
+reset
 root
 run
 script
@@ -104,6 +114,9 @@ source
 st
 startx
 startxfce4
+stdio
+stdlib
+strcpy
 sudo
 supplicant
 systemctl
@@ -116,6 +129,7 @@ tmux
 tree
 umount
 uname
+unsigned
 unzip
 update
 upower

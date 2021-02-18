@@ -93,6 +93,10 @@ function make_bashrc_alias {
     reset
 
     echo -e "${FG_GREEN}\nThe bash alias \"kbd\" was added to ~/.bashrc\n\tType \"kbd\" to launch the keyboard-layout.sh script.\n${STYLES_OFF}\n"
+
+    if [ ${BASH_VERSION::1} -lt 4 ]; then
+        echo -e "This script application is optimized for Bash versions 4 or greater.\n\tCurrent Bash Version: ${BASH_VERSION}"
+    fi
 }
 
 function main {

@@ -43,8 +43,8 @@ function tput_color_variables {
         #set output-meta on
         #set convert-meta off
 
-        CHECKMARK=' '
-        XMARK=' '
+        CHECKMARK='☺'
+        XMARK='X'
     fi
 }
 
@@ -92,7 +92,6 @@ function letter_array {
     computerWords=( $(cat $thisPath/text-files/computerWords.txt) )
 
     echo -e " Loading finished. $FG_NoColor"
-    sleep 1s
 }
 
 function define_digit {
@@ -153,8 +152,6 @@ function define_digit {
             ARRAY=("${letterArray[@]}")
             ;;
     esac
-
-    sleep 0.1s
 }
 
 function define_hand {
@@ -238,7 +235,6 @@ function define_hand {
             ;;
     esac
 
-    sleep 0.1s
 }
 
 function menu {
@@ -280,14 +276,12 @@ function menu {
             ;;
     esac
 
-    sleep 1s
-
     ## Starting message and UI guide
 
-    echo -e "${FG_BLUE}\n\n-------------------------\n Training: $training"
+    echo -e "${FG_BLUE}\n\n -------------------------\n Instructions\n -------------------------\n Training: ${FG_START_UNDERLINE}$training${FG_END_UNDERLINE}"
     echo -e "${FG_BLUE} Interface layout:\n\t[ ${FG_START_UNDERLINE}H${FG_END_UNDERLINE}int ]  <type this string> ==> ${FG_GREEN}(${CHECKMARK} pass)${FG_BLUE} or ${FG_RED}(${XMARK} fail)${FG_BLUE} flag\n Performance status:\n\t( wpm ) @timestamp | ( total wpm ) avg"
     echo -e "${FG_BLUE} Exit:\n\tPress \"Esc\" or \"Esc+Enter\" or \"Ctrl+c\" to EXIT${FG_NoColor}"
-    echo -e "${FG_BLUE}-------------------------\n${FG_NoColor}"
+    echo -e "${FG_BLUE} -------------------------\n${FG_NoColor}"
 }
 
 function random_letter {
@@ -301,8 +295,6 @@ function random_letter {
     let "random_number %= $RANGE"
     random_number=$(($random_number+$FLOOR))
     letter=(${ARRAY[$random_number]})
-
-    sleep 0.1s
 }
 
 function sequential_words {
@@ -320,8 +312,6 @@ function sequential_words {
         letter=(${ARRAY[$index]})
         index=$(($index+1))
     fi
-
-    sleep 0.1s
 }
 
 function finger_digit {
@@ -356,8 +346,6 @@ function finger_digit {
             fingerhint="${FG_START_UNDERLINE}R${FG_END_UNDERLINE}ight pinky"
             ;;
     esac
-
-    sleep 0.1s
 }
 
 function summary {
@@ -368,12 +356,16 @@ function summary {
 
     avgPassString=$(( passCount / min ))
 
-    echo -e "\n ---\n"
-    #echo -e " ${FG_START_UNDERLINE}Training${FG_END_UNDERLINE}:\t$training"
+    echo -e "\n _ Calculating ...\n"
+    sleep 3s
 
-    echo -e " ${FG_START_UNDERLINE}Performance${FG_END_UNDERLINE}:\t${FG_GREEN} $CHECKMARK Pass:$passCount/$totalCount ${FG_RED} $XMARK Fail:$failCount/$totalCount ${FG_NoColor} ( $avgPassString ${FG_GREEN}$CHECKMARK${FG_MAGENTA}'s / min ${FG_NoColor}) avg"
+    echo -e " -------------------------\n Summary \n -------------------------\n"
+    echo -e " ${FG_START_UNDERLINE}Training Summary${FG_END_UNDERLINE}: $training"
 
-    echo -e " ${FG_START_UNDERLINE}Elapsed time${FG_END_UNDERLINE}:\t${FG_CYAN}$(print_elapsed_time) ${FG_NoColor}"
+    echo -e " ${FG_START_UNDERLINE}Performance${FG_END_UNDERLINE}:\t   ${FG_GREEN}$CHECKMARK Pass:$passCount/$totalCount ${FG_RED} $XMARK Fail:$failCount/$totalCount ${FG_NoColor} ( $avgPassString ${FG_GREEN}$CHECKMARK${FG_MAGENTA}'s / min ${FG_NoColor}) avg"
+
+    echo -e " ${FG_START_UNDERLINE}Elapsed time${FG_END_UNDERLINE}:\t   ${FG_CYAN}$(print_elapsed_time) ${FG_NoColor}"
+    echo -e " -------------------------"
     echo -e "\n Quit App."
 }
 
@@ -381,7 +373,6 @@ function finger_check {
     pass=0
     escKey=$'\e'
     tabVar=$(echo -e "\t")
-    sleep 0.1s
 
     while [ $pass -eq 0 ]
     do
