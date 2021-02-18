@@ -96,42 +96,53 @@ function define_digit {
 
     case $digit in
         [1qaz]* ) ## Left pinky
+            handhint="${FG_START_UNDERLINE}L${FG_END_UNDERLINE}eft pinky"
             training="Left pinky"
             ARRAY=("${leftPinky[@]}")
             ;;
         [2wsx]* ) ## Right ring
+            handhint="${FG_START_UNDERLINE}L${FG_END_UNDERLINE}eft ring"
             training="Right ring"
             ARRAY=("${leftRing[@]}")
             ;;
         [3edc]* ) ## Left middle
+            handhint="${FG_START_UNDERLINE}L${FG_END_UNDERLINE}eft middle"
             training="Left middle"
             ARRAY=("${leftMiddle[@]}")
             ;;
         [456rfvtgb]* ) ## Left index
+            handhint="${FG_START_UNDERLINE}L${FG_END_UNDERLINE}eft index"
             training="Left index"
             ARRAY=("${leftIndex[@]}")
             ;;
         [7yhnujm]* ) ## Right index
+            handhint="${FG_START_UNDERLINE}R${FG_END_UNDERLINE}ight index"
             training="Right index"
             ARRAY=("${rightIndex[@]}")
             ;;
         [8ik,]* ) ## Right middle
+            handhint="${FG_START_UNDERLINE}R${FG_END_UNDERLINE}ight middle"
             training="Right middle"
             ARRAY=("${rightMiddle[@]}")
             ;;
         [9ol.]* ) ## Right ring
+            handhint="${FG_START_UNDERLINE}R${FG_END_UNDERLINE}ight ring"
             training="Right ring"
             ARRAY=("${rightRing[@]}")
             ;;
         [0p\;\/]* ) ## Right pinky
+            handhint="${FG_START_UNDERLINE}R${FG_END_UNDERLINE}ight pinky"
             training="Right pinky"
             ARRAY=("${rightPinky[@]}")
             ;;
-        * )
+        * ) ## default to all fingers
+            handhint="${FG_START_UNDERLINE}A${FG_END_UNDERLINE}ll digits"
             training="all individual digits"
             ARRAY=("${letterArray[@]}")
             ;;
     esac
+
+    sleep 0.1s
 }
 
 function define_hand {
@@ -209,6 +220,8 @@ function define_hand {
             ARRAY=(${wordsArray[@]})
             ;;
     esac
+
+    sleep 0.1s
 }
 
 function menu {
@@ -218,15 +231,15 @@ function menu {
     read -p "${FG_MAGENTA}Enter an option number? [ 1, 2, 3, 4 ]:${FG_NoColor} " -n1 hand
 
     case $hand in
-        1 )
+        1 ) ## finger training
             isRandom=1
             define_digit
             ;;
-        2 )
+        2 ) ## hand training
             isRandom=1
             define_hand
             ;;
-        3 )
+        3 ) ## practice word
             isRandom=1
             echo -e "\n\nEnter a word you want to practice typing. (no spaces)\n"
             read -p "${FG_MAGENTA}Enter a word string:${FG_NoColor} " letter
@@ -234,7 +247,7 @@ function menu {
             training="typing the \"$letter\" string"
             handhint="freestyle"
             ;;
-        4 )
+        4 ) ## pracice centence
             isRandom=0
             echo -e "\n\nEnter a centence you want to practice typing.\n"
             read -p "${FG_MAGENTA}Enter a centence string:${FG_NoColor} " letter
@@ -242,18 +255,21 @@ function menu {
             training="typing the \"$letter\" centence"
             handhint="freestyle"
             ;;
-        * )
+        * ) ## all single fingers
             isRandom=1
             training="all individual digits"
+            define_digit
             ARRAY=("${letterArray[@]}")
             ;;
     esac
+
+    sleep 0.1s
 
     ## Starting message and UI guide
 
     echo -e "${FG_BLUE}\n\n-------------------------\n Training: $training"
     echo -e "${FG_BLUE} Interface layout:\n\t[ ${FG_START_UNDERLINE}H${FG_END_UNDERLINE}int ]  <type this string> ==> ${FG_GREEN}(${CHECKMARK} pass)${FG_BLUE} or ${FG_RED}(${XMARK} fail)${FG_BLUE} flag\n Performance status:\n\t( wpm ) @timestamp | ( total wpm ) avg"
-    echo -e "${FG_BLUE} Exit:\n\tPress \"Esc\" or \"Esc+Enter\" or \"Ctrl+c\" to EXIT"
+    echo -e "${FG_BLUE} Exit:\n\tPress \"Esc\" or \"Esc+Enter\" or \"Ctrl+c\" to EXIT${FG_NoColor}"
     echo -e "${FG_BLUE}-------------------------\n${FG_NoColor}"
 }
 
@@ -268,6 +284,8 @@ function random_letter {
     let "random_number %= $RANGE"
     random_number=$(($random_number+$FLOOR))
     letter=(${ARRAY[$random_number]})
+
+    sleep 0.1s
 }
 
 function sequential_words {
@@ -285,6 +303,8 @@ function sequential_words {
         letter=(${ARRAY[$index]})
         index=$(($index+1))
     fi
+
+    sleep 0.1s
 }
 
 function finger_digit {
@@ -319,6 +339,8 @@ function finger_digit {
             fingerhint="${FG_START_UNDERLINE}R${FG_END_UNDERLINE}ight pinky"
             ;;
     esac
+
+    sleep 0.1s
 }
 
 function summary {
@@ -327,15 +349,10 @@ function summary {
         min=1
     fi
 
-    command -v bc
-    isBC=$?
-    if [ $isBC -eq 0 ]; then
-        avgPassString=${FG_MAGENTA}$(echo "$passCount/$min" | bc)
-    else
-        avgPassString="? bc not installed!"
-    fi
+    avgPassString=$(( passCount / min ))
 
-    echo -e "\n\n ${FG_START_UNDERLINE}Training${FG_END_UNDERLINE}:\t$training"
+    echo -e "\n ---\n"
+    #echo -e " ${FG_START_UNDERLINE}Training${FG_END_UNDERLINE}:\t$training"
 
     echo -e " ${FG_START_UNDERLINE}Performance${FG_END_UNDERLINE}:\t${FG_GREEN} $CHECKMARK Pass:$passCount/$totalCount ${FG_RED} $XMARK Fail:$failCount/$totalCount ${FG_NoColor} ( $avgPassString ${FG_GREEN}$CHECKMARK${FG_MAGENTA}'s / min ${FG_NoColor}) avg"
 
@@ -347,6 +364,7 @@ function finger_check {
     pass=0
     escKey=$'\e'
     tabVar=$(echo -e "\t")
+    sleep 0.1s
 
     while [ $pass -eq 0 ]
     do
@@ -366,7 +384,7 @@ function finger_check {
             else
                 spacer=$(echo -e "\t")
             fi
-            
+
             read -p "[ ${FG_START_UNDERLINE}$handhint${FG_END_UNDERLINE} ]  ${FG_CYAN}${FG_BOLD}$letter${FG_NoColor}${spacer}==> " -n$string_length inputPress
 
         else
@@ -462,15 +480,12 @@ function print_minute_flag {
 
         pass_per_min=$(($passCount-$pass_per_min))
 
-        command -v bc
-        isBC=$?
-        if [ $isBC -eq 0 ]; then
-            avgPassString=${FG_MAGENTA}$(echo "$passCount/$min" | bc)
-        else
-            avgPassString="? bc not installed!"
-        fi
+        avgPassString=$(( passCount / min ))
 
         echo -e "\n\t( ${FG_MAGENTA}${FG_BOLD}$pass_per_min ${FG_NoColor}${FG_GREEN}${CHECKMARK}${FG_MAGENTA}'s / min ${FG_NoColor})${FG_MAGENTA} @$(print_elapsed_time)${FG_NoColor} | ( $avgPassString ${FG_GREEN}${CHECKMARK}${FG_MAGENTA}'s / min ${FG_NoColor}) avg \n"
+
+        echo -e "${FG_BLUE}\t Exit:\n\t\tPress \"Esc\" or \"Esc+Enter\" or \"Ctrl+c\" to EXIT${FG_NoColor}\n"
+
         pass_per_min=$passCount
     fi
 }

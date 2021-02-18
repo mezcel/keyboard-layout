@@ -80,18 +80,28 @@ function make_bashrc_alias {
     echo -e "$aliasautoString" >> $tempBashrc
 
     ## Make the temp file the ~/.bashrc file
-    sudo mv $tempBashrc $origianlBashrc
-    sleep 1
+    mv $tempBashrc $origianlBashrc
+    sleep 2s
 
     ## apply the new ~/.bashrc
     source $origianlBashrc
 
-    echo -e "$FG_YELLOWDone.\n $STYLES_OFF"
+    echo -e "${FG_YELLOW}Done.\n ${STYLES_OFF} Restrting Bash in 3 seconds ..."
+
+    sleep 3s
+
+    reset
+
+    echo -e "${FG_GREEN}\nThe bash alias \"kbd\" was added to ~/.bashrc\n\tType \"kbd\" to launch the keyboard-layout.sh script.${STYLES_OFF}\n"
+}
+
+function main {
+    Tput_Colors
+    aliasVar=kbd
+    bashFile=keyboard-layout.sh
+
+    make_bashrc_alias $aliasVar $bashFile
 }
 
 ## RUN
-
-aliasVar=kbd
-bashFile=keyboard-layout.sh
-
-make_bashrc_alias $aliasVar $bashFile
+main

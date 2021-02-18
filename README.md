@@ -13,6 +13,13 @@
 ./keyboard-layout.sh
 ```
 
+#### Bash Alias ~/.bashrc
+```sh
+## Make a bash alias to launch keyboard-layout.sh
+
+./set_bash_alias.sh
+```
+
 ### Edit Training
 
 * Edit the strings used in training.
