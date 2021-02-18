@@ -92,7 +92,7 @@ function make_bashrc_alias {
 
     reset
 
-    echo -e "${FG_GREEN}\nThe bash alias \"kbd\" was added to ~/.bashrc\n\tType \"kbd\" to launch the keyboard-layout.sh script.${STYLES_OFF}\n"
+    echo -e "${FG_GREEN}\nThe bash alias \"kbd\" was added to ~/.bashrc\n\tType \"kbd\" to launch the keyboard-layout.sh script.\n${STYLES_OFF}\n"
 }
 
 function main {

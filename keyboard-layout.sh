@@ -28,12 +28,24 @@ function tput_color_variables {
     ## not sure what the dependency is for this
     ## known to work with powerline, DejaVu Sans
 
-    ## CHECKMARK='\u2714'
-    CHECKMARK='\u2713'
+    ## Mac uses bash less than 4 and does not supprt some unicode
+    if [ ${BASH_VERSION::1} -ge 4 ]; then
+        ## CHECKMARK='\u2714'
+        CHECKMARK='\u2713'
 
-    ## XMARK='\u274c'
-    ## XMARK='\u2715'
-    XMARK='\u2717'
+        ## XMARK='\u274c'
+        ## XMARK='\u2715'
+        XMARK='\u2717'
+    else
+        ## Edit Mac terminal config
+        ## $HOME/.inputrc
+        #set input-meta on
+        #set output-meta on
+        #set convert-meta off
+
+        CHECKMARK=' '
+        XMARK=' '
+    fi
 }
 
 function greetings {
@@ -164,6 +176,7 @@ function define_hand {
             ARRAY=("${letterArray[@]}")
             ;;
         1 ) ## Left hand letters
+            handhint="${FG_START_UNDERLINE}L${FG_END_UNDERLINE}eft hand"
             training="left handed letters"
             ARRAY=("${leftArray[@]}")
             ;;
@@ -173,6 +186,7 @@ function define_hand {
             ARRAY=(${leftWords[@]})
             ;;
         3 ) ## Right hand letters
+            handhint="${FG_START_UNDERLINE}R${FG_END_UNDERLINE}ight hand"
             training="right handed letters"
             ARRAY=("${rightArray[@]}")
             ;;
@@ -182,6 +196,7 @@ function define_hand {
             ARRAY=(${rightWords[@]})
             ;;
         5 ) ## Top row letters
+            handhint="${FG_START_UNDERLINE}T${FG_END_UNDERLINE}op row"
             training="top row letters"
             ARRAY=("${toprowArray[@]}")
             ;;
@@ -191,6 +206,7 @@ function define_hand {
             ARRAY=(${toprowWords[@]})
             ;;
         7 ) ## Home row letters
+            handhint="${FG_START_UNDERLINE}H${FG_END_UNDERLINE}ome row"
             training="home row letters"
             ARRAY=("${homerowArray[@]}")
             ;;
@@ -200,6 +216,7 @@ function define_hand {
             ARRAY=(${homerowWords[@]})
             ;;
         9 ) ## Bottom row letters
+            handhint="${FG_START_UNDERLINE}B${FG_END_UNDERLINE}ottom row"
             training="bottom row letters"
             ARRAY=("${bottomrowArray[@]}")
             ;;
@@ -263,7 +280,7 @@ function menu {
             ;;
     esac
 
-    sleep 0.1s
+    sleep 1s
 
     ## Starting message and UI guide
 
