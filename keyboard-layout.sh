@@ -31,11 +31,13 @@ function tput_color_variables {
     ## Mac uses bash less than 4 and does not supprt some unicode
     if [ ${BASH_VERSION::1} -ge 4 ]; then
         ## CHECKMARK='\u2714'
-        CHECKMARK='\u2713'
+        ## CHECKMARK='\u2713'
+		CHECKMARK='✓'
 
         ## XMARK='\u274c'
         ## XMARK='\u2715'
-        XMARK='\u2717'
+        ## XMARK='\u2717'
+		XMARK='✗'
     else
         ## Edit Mac terminal config
         ## $HOME/.inputrc
