@@ -30,14 +30,14 @@ function tput_color_variables {
 
     ## Mac uses bash less than 4 and does not supprt some unicode
     if [ ${BASH_VERSION::1} -ge 4 ]; then
-        ## CHECKMARK='\u2714'
-        ## CHECKMARK='\u2713'
-		CHECKMARK='✓'
+        #CHECKMARK='\u2714'
+        #CHECKMARK='\u2713'
+		CHECKMARK='♥'
 
-        ## XMARK='\u274c'
-        ## XMARK='\u2715'
-        ## XMARK='\u2717'
-		XMARK='✗'
+        #XMARK='\u274c'
+        #XMARK='\u2715'
+        #XMARK='\u2717'
+		XMARK='X'
     else
         ## Edit Mac terminal config
         ## $HOME/.inputrc
@@ -45,7 +45,8 @@ function tput_color_variables {
         #set output-meta on
         #set convert-meta off
 
-        CHECKMARK='☺'
+        #CHECKMARK='☺'
+		CHECKMARK='♥'
         XMARK='X'
     fi
 }
@@ -494,7 +495,7 @@ function print_minute_flag {
 
         echo -e "\n\t( ${FG_MAGENTA}${FG_BOLD}$pass_per_min ${FG_NoColor}${FG_GREEN}${CHECKMARK}${FG_MAGENTA}'s / min ${FG_NoColor})${FG_MAGENTA} @$(print_elapsed_time)${FG_NoColor} | ( $avgPassString ${FG_GREEN}${CHECKMARK}${FG_MAGENTA}'s / min ${FG_NoColor}) avg \n"
 
-        echo -e "${FG_BLUE}\t Exit:\n\t\tPress \"Esc\" or \"Esc+Enter\" or \"Ctrl+c\" to EXIT${FG_NoColor}\n"
+        echo -e "${FG_BOLD}${FG_BLUE}\t Exit:\n\t\tPress \"Esc\" or \"Esc+Enter\" or \"Ctrl+c\" to EXIT${FG_NoColor}\n"
 
         pass_per_min=$passCount
     fi

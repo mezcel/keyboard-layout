@@ -71,8 +71,7 @@ function make_bashrc_alias {
     sed -i "/$bashFile/d" $tempBashrc
     sleep 1s
 
-    aliasautoString="\
-    \n## Alias for $bashFilePath \
+    aliasautoString="## Alias for $bashFilePath \
     \nalias $aliasVar=\"bash $bashFilePath\" \
     \n"
 
